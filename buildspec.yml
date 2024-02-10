@@ -3,16 +3,15 @@ version: 0.2
 phases:
   install: 
     runtime-versions:
-      java: latest
+      java: openjdk8
     commands:
-      - wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
-      - sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
-      - sudo yum install -y apache-maven
-      - sudo yum install java-1.8.0-openjdk-devel.x86_64 -y
-      - sudo yum install zip -y
+      - sudo apt-get update
+      - sudo apt-get install -y openjdk-8-jdk
+      - sudo apt-get install -y maven
+      - sudo apt-get install -y zip
   build:
     commands:
-      - sudo mvn clean install
+      - mvn clean install
 artifacts:
   files:
     - target/webapp-1-0.0.1-SNAPSHOT.jar
